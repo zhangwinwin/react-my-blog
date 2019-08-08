@@ -1,0 +1,25 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "koa & mysql blog backEnd server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-jwt": "^3.6.0",
+    "koa-router": "^7.4.0",
+    "koa2-cors": "^2.0.6",
+    "sequelize": "^5.12.3"
+  },
+  "devDependencies": {
+    "cross-env": "^5.2.0",
+    "koa-logger": "^3.2.1",
+    "nodemon": "^1.19.1"
+  }
+}
