@@ -13,4 +13,5 @@ app.use(cors())
   .use(logger())
 
 app.listen(3030, () => {
+  console.log('app started at port 3030...')
 })
