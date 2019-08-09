@@ -1,9 +1,9 @@
-const Koa = require('koa')
-const bodyparser = require('koa-bodyparser')
-const cors = require('koa2-cors')
-const logger = require('koa-logger')
+import Koa from 'koa'
+import bodyparser from 'koa-bodyparser'
+import cors from 'koa2-cors'
+import logger from 'koa-logger'
 
-const router = require('./router')
+import router from './router'
 
 const app = new Koa()
 

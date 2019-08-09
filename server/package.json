@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env NODE_ENV=development nodemon app.js"
+    "start": "cross-env NODE_ENV=development nodemon start.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,9 +16,12 @@
     "koa-jwt": "^3.6.0",
     "koa-router": "^7.4.0",
     "koa2-cors": "^2.0.6",
+    "moment": "^2.24.0",
     "sequelize": "^5.12.3"
   },
   "devDependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-register": "^6.26.0",
     "cross-env": "^5.2.0",
     "koa-logger": "^3.2.1",
     "nodemon": "^1.19.1"
