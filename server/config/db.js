@@ -3,7 +3,7 @@ const isDev = process.env.NODE_ENV === 'development'
 const config = {
   database: isDev ? 'react-my-blog' : undefined,
   user: isDev ? 'root' : '',
-  password: isDev ? 'Mysql$2019' : '',
+  password: isDev ? 'Mysql123' : '',
   options: {
     host: isDev ? 'localhost' : '',
     dialect: 'mysql',

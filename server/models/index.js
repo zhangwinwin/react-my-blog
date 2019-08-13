@@ -1,5 +1,5 @@
-// import fs from 'fs'
-// import path from 'path'
+import fs from 'fs'
+import path from 'path'
 import config from '../config'
 import Sequelize from 'sequelize'
 
@@ -12,12 +12,17 @@ const sequelize = new Sequelize(
 
 let db = {}
 
-// fs.readFileSync(__dirname)
-//   .filter(file => file !== 'index.js')
-//   .forEach(file => {
-//     const model = sequelize.import(path.join(__dirname, file))
-//     db[model.name] = model
-//   })
+fs.readdirSync(__dirname)
+  .filter(file => file !== 'index.js')
+  .forEach(file => {
+    const model = sequelize.import(path.join(__dirname, file))
+    db[model.name] = model
+  })
+  Object.keys(db).forEach(modelName => {
+    if (db[modelName].associate) {
+      db[modelName].associate(db)
+    }
+  })
 
 db.sequelize = sequelize
 
