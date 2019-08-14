@@ -5,7 +5,6 @@ import { encrypt, comparePassword } from '../lib/bcrypt'
 import { createToken } from '../lib/token'
 
 export async function register (ctx) {
-  console.log('ctx.request.body.', ctx.request.body)
   const { username, password, email } = ctx.request.body
   let response
 
@@ -53,10 +52,9 @@ export async function register (ctx) {
 
 export async function userlogin (ctx) {
   const { account, password } = ctx.request.body
-
   // 校验登陆
   const validate = Joi.validate({ account, password }, login)
-  
+  console.log('account', account)
   let response
   if (validate.error) {
     response = {
@@ -65,12 +63,18 @@ export async function userlogin (ctx) {
     }
   } else {
     const user = await db.user.findOne({
-      where: {
-        $or: {
-          username: account,
-          email: account
+      $or: [
+        {
+          where: {
+            username: account
+          }
+        },
+        {
+          where: {
+            email: account
+          }
         }
-      }
+      ]
     })
     if (!user) {
       response = {

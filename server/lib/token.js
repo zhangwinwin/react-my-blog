@@ -1,8 +1,8 @@
 import jwt from 'jsonwebtoken'
-import { TOKEN_SECRET, TOKEN_EXPIRESIN } from '../config'
+import Token from '../config'
 
-export function createtoken (info) {
-  const token = jwt(info, TOKEN_SECRET, { expiresIn: TOKEN_EXPIRESIN})
+export function createToken (info) {
+  const token = jwt.sign(info, Token.TOKEN_SECRET, { expiresIn: Token.TOKEN_EXPIRESIN})
   console.log('generated token')
   return token
 }
