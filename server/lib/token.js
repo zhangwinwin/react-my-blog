@@ -13,7 +13,7 @@ export function decodeToken (ctx) {
   return jwt.decode(token)
 }
 
-export function checkAuto (ctx) {
+export function checkAuth (ctx) {
   const { auth } = decodeToken(ctx)
   if (auth === 1) {
     return true
