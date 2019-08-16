@@ -7,7 +7,7 @@ export function encrypt (password) {
     bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
       if (err) reject(password)
       bcrypt.hash(password, salt, function (err, hash) {
-        if (err) reject(password)
+        if (err) resolve(password)
         resolve(hash)
       })
     })

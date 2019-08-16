@@ -3,6 +3,9 @@ import { regiester, login } from '../schemas/user'
 import db from '../models'
 import { encrypt, comparePassword } from '../lib/bcrypt'
 import { createToken, checkAuth } from '../lib/token'
+import sequelize from 'sequelize'
+
+const Op = sequelize.Op
 
 export async function register (ctx) {
   const { username, password, email } = ctx.request.body
@@ -63,19 +66,14 @@ export async function userlogin (ctx) {
     }
   } else {
     const user = await db.user.findOne({
-      $or: [
-        {
-          where: {
-            username: account
-          }
-        },
-        {
-          where: {
-            email: account
-          }
-        }
-      ]
+      where: {
+        [Op.or]: [
+          { username: account },
+          { email: account }
+        ]
+      }
     })
+    console.log('user', user)
     if (!user) {
       response = {
         code: 400,
@@ -111,108 +109,68 @@ export async function userlogin (ctx) {
 
 export async function updateUser (ctx) {
   const userId = parseInt(ctx.params.id)
-  const { username, oldPassword, password, email } = ctx.request.body
+  const { oldPassword, password, email } = ctx.request.body
   const user = await db.user.findByPk(userId)
-
   let response = {}
   let token
-
-  if (!user.email) {
-    const result = await db.user.findOne({
+  if (!!email) {
+    let hasEmail = await db.user.findOne({
       where: {
         email
       }
     })
-    
-    if (result) {
+    if (hasEmail) {
       response = {
         code: 400,
         message: '该邮箱已被注册'
       }
+      ctx.body = response
+      return
     } else {
       await db.user.update({ email }, {
         where: {
           id: userId
         }
       })
-      response = {
-        code: 200,
-        message: `已成功绑定邮箱${email}`
-      }
-    }
-  } else {
-    if (oldPassword) {
-      const isMatch = await comparePassword(oldPassword, user.password)
-      if (isMatch) {
-        if (isMatch) {
-          if (!username && !password) {
-            response = {
-              code: 400,
-              message: '用户名/密码参数错误'
-            }
-          } else if (username && !password) {
-            const result = await db.user.findOne({
-              where: {
-                username
-              }
-            })
-            if (result) {
-              response = { code: 400, message: '用户名已被占用' }
-            } else {
-              await db.user.update({ username }, {
-                where: {
-                  id: userId
-                }
-              })
-              response = {
-                code: 200,
-                message: '用户名修改成功'
-              }
-            }
-          } else if (!username && password) {
-            const saltPassword = await encrypt(password)
-            await db.user.update({
-              password: saltPassword
-            }, {
-              where: {
-                id: userId
-              }
-            })
-            response = {
-              code: 200,
-              message: '密码修改成功'
-            }
-          } else {
-            const saltPassword = await encrypt(password)
-            await db.user.update({ username, password: saltPassword }, {
-              where: {
-                id: userId
-              }
-            })
-            response = {
-              code: 200,
-              message: '用户名/密码修改成功'
-            }
-          }
-        }
-      } else {
-        response = {
-          code: 400,
-          message: '密码不正确'
-        }
-      }
-    } else {
-      response = {
-        code: 400,
-        message: '请输入原密码验证您的身份'
-      }
     }
   }
-  if (response.code === 200) {
-    const result = await db.user.findById(userId)
-    const { username, id, email, auth } = result
-    token = createToken({ username, user: id, auth, email })
-    response.token = token
+  if (!!oldPassword) {
+    const isMatch = await comparePassword(oldPassword, user.password)
+    if (!isMatch) {
+      response = {
+        code: 400,
+        message: '用户原密码不正确'
+      }
+      ctx.body = response
+      return
+    } else {
+      const saltPassword = await encrypt(password)
+      await db.user.update({
+        password: saltPassword
+      }, {
+        where: {
+          id: userId
+        }
+      })
+    }
+  }
+  const result = await db.user.findOne({
+    where: {
+      id: userId
+    }
+  })
+  token = createToken({
+    username: result.username,
+    id: result.id,
+    auth: result.auth,
+    email: result.email
+  })
+  response = {
+    code: 200,
+    message: '修改成功',
+    username: result.username,
+    email: result.email,
+    token
   }
   ctx.body = response
 }
