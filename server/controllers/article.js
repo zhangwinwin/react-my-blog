@@ -40,38 +40,43 @@ export async function createArticle (ctx) {
   }
 }
 
-export async function update (ctx) {
+export async function updateArticle (ctx) {
   const isAuth = checkAuth(ctx)
+  let isTop = false
   if (isAuth) {
     const { articleId, title, content, categories, tags, showOrder } = ctx.request.body
-
+    console.log(ctx.request.body)
     if (!!showOrder) {
       // 文章设置置顶
       await db.article.update({ showOrder }, { where: { id: articleId } })
+      isTop = true
+    }
+
+    const validator = Joi.validate(ctx.request.body, Article.update)
+    if (validator.error) {
       ctx.body = {
-        code: 200,
-        message:  '文章置顶成功'
+        code: 400,
+        message: validator.error.message
       }
     } else {
-      const validator = Joi.validate(ctx.request.body, Article.update)
-      if (validator.error) {
+      const tagList = tags.map(tag => ({name: tag, articleId}))
+      const categoryList = categories.map(cate => ({name: cate, articleId}))
+
+      await db.article.update({ title, content }, { where: { id: articleId } })
+
+      await db.tag.destroy({ where: { articleId } })
+
+      await db.tag.bulkCreate(tagList)
+
+      await db.category.destroy({ where: { articleId } })
+      await db.category.bulkCreate(categoryList)
+
+      if (isTop) {
         ctx.body = {
-          code: 400,
-          message: validator.error.message
+          code: 200,
+          message: '文章修改成功, 并置顶'
         }
       } else {
-        const tagList = tags.map(tag => ({name: tag, articleId}))
-        const categoryList = categories.map(cate => ({name: cate, articleId}))
-
-        await db.article.update({ title, content }, { where: { id: articleId } })
-
-        await db.tag.destroy({ where: { articleId } })
-
-        await db.tag.buikCreate(tagList)
-
-        await db.category.destroy({ where: { articleId } })
-        await db.category.buikCreate(categoryList)
-
         ctx.body = {
           code: 200,
           message: '文章修改成功'
