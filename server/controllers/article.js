@@ -85,3 +85,33 @@ export async function updateArticle (ctx) {
     }
   }
 }
+
+// 获取文章详情
+export async function getArticleById (ctx) {
+  const id = ctx.params.id
+  const data = await db.article.findOne({
+    where: { id },
+    include: [
+      { model: db.tag, attributes: ['name'] },
+      { model: db.category, attributes: ['name'] },
+      {
+        model: db.comment,
+        attributes: ['id', 'userId', 'content', 'createdAt'],
+        include: [
+          {
+            model: db.reply,
+            attributes: ['id', 'userId', 'content', 'createdAt'],
+            include: [{ model: db.user, as: 'user', attributes: ['username'] }]
+          },
+          { model: db.user, as: 'user', attributes: ['username'] }
+        ]
+      }
+    ],
+    order: [[db.comment, 'createdAt', 'DESC']],
+    row: true
+  })
+  ctx.body = {
+    code: 200,
+    data
+  }
+}
