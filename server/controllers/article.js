@@ -115,3 +115,93 @@ export async function getArticleById (ctx) {
     data
   }
 }
+
+/**
+ * 查询文章列表
+ * @param {Number} offset - 当前页码 默认为1
+ * @param {Number} limit - 限制查询数量 默认为10
+ */
+export async function getArticleList (ctx) {
+  let { page = 1, pageSize = 10, title, tag, category, fetchTop } = ctx.query
+  let offset = (page - 1) * pageSize
+  let queryParams = {}
+  let order = [['createdAt', 'DESC']]
+
+  if (title) {
+    queryParams.title = { $like: `%${title}` }
+  }
+
+  if (fetchTop) {
+    queryParams.showOrder = 1
+    order = [['updatedAt', 'DESC']]
+  }
+
+  const tagFilter = tag ? { name: tag } : {}
+  const categoryFilter = category ? { name: category } : {}
+
+  pageSize = parseInt(pageSize)
+  
+  const data = await db.article.findAndCountAll({
+    where: queryParams,
+    include: [
+      {
+        model: db.tag,
+        attributes: ['name'],
+        where: tagFilter
+      },
+      {
+        model: db.category,
+        attributes: ['name'],
+        where: categoryFilter
+      },
+      {
+        model: db.comment,
+        attributes: ['id'],
+        include: [{
+          model: db.reply,
+          attributes: ['id']
+        }]
+      }
+    ],
+    offset,
+    limit: pageSize,
+    order,
+    row: true,
+    distinct: true
+  })
+  ctx.body = {
+    code: 200,
+    data
+  }
+}
+
+export async function deleteArticle (ctx) {
+  const isAuth = checkAuth(ctx)
+  if (isAuth) {
+    const articleId = ctx.params.id
+    if (articleId) {
+      await db.tag.destroy({
+        where: {
+          articleId
+        }
+      })
+      await db.article.destroy({
+        where: {
+          id: articleId
+        }
+      })
+      await db.sequelize.query(
+        `delete comment, reply from comment left join reply on comment.id=reply.commentId where comment.articleId=${articleId}`
+      )
+      ctx.body = {
+        code: 200,
+        message: '成功删除文章'
+      }
+    } else {
+      ctx.body = {
+        code: 403,
+        message: '文章id不能为空'
+      }
+    }
+  }
+}
