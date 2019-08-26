@@ -10,3 +10,31 @@ export async function getTags (ctx) {
     data
   }
 }
+
+export async function getArticlesByTag (ctx) {
+  let { page = 1, pageSize = 10, name } = ctx.query
+  console.log('query', ctx.query)
+  let offset = (page - 1) * pageSize
+
+  pageSize = parseInt(pageSize)
+  const data = await db.article.findAndCountAll({
+    attributes: ['id', 'title', 'createdAt'],
+    include: [{
+      model: db.tag,
+      where: {
+        name
+      }
+    },
+    {
+      model: db.category
+    }],
+    offset,
+    limit: pageSize,
+    order: [['createdAt', 'DESC']],
+    distinct: true
+  })
+  ctx.body = {
+    code: 200,
+    data
+  }
+}

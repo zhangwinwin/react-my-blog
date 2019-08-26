@@ -1,8 +1,9 @@
 import Router from 'koa-router'
-import { getTags} from '../controllers/tag'
+import { getTags, getArticlesByTag } from '../controllers/tag'
 
 const router = new Router()
 
 router.get('/', getTags)
+router.get('/article', getArticlesByTag)
 
 export default router
