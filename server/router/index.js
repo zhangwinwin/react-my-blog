@@ -3,6 +3,7 @@ import { register, userlogin } from '../controllers/user'
 import userRouter from './user'
 import articleRouter from './article'
 import tagRouter from './tag'
+import categoryRouter from './category'
 const router = new Router({
   prefix: '/api'
 })
@@ -10,6 +11,7 @@ const router = new Router({
 router.use('/users', userRouter.routes())
 router.use('/articles', articleRouter.routes())
 router.use('/tags', tagRouter.routes())
+router.use('/categories', categoryRouter.routes())
 
 router.post('/login', userlogin)
 router.post('/register', register)
