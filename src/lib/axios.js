@@ -1,8 +1,9 @@
 import axios from 'axios'
 import { message } from 'antd'
+import baseURL from '../env'
 
 const instance = axios.create({
-  baseURL: 'http://localhost:3030',
+  baseURL: baseURL,
   timeout: 20000 // 请求超时时间
 })
 
