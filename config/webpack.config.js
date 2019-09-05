@@ -38,7 +38,7 @@ const shouldInlineRuntimeChunk = process.env.INLINE_RUNTIME_CHUNK !== 'false';
 const useTypeScript = fs.existsSync(paths.appTsConfig);
 
 // style files regexes
-const cssRegex = /\.css$/;
+const cssRegex = /\.(css|less)$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
@@ -104,6 +104,10 @@ module.exports = function(webpackEnv) {
           ],
           sourceMap: isEnvProduction && shouldUseSourceMap,
         },
+      },
+      {
+        loader: require.resolve('less-loader'),
+        options: cssOptions
       },
     ].filter(Boolean);
     if (preProcessor) {
@@ -272,6 +276,8 @@ module.exports = function(webpackEnv) {
         // Support React Native Web
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         'react-native': 'react-native-web',
+        '@': paths.appSrc,
+        'react-dom': '@hot-loader/react-dom'
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

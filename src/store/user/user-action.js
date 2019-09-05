@@ -1,5 +1,5 @@
 import * as types from '@/store/action-types'
-import axios from '@/lib/asios'
+import axios from '@/lib/axios'
 import { message } from 'antd'
 
 export function login (params) {
