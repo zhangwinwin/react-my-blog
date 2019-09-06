@@ -11,7 +11,7 @@ function Root(props) {
     props.getTags()
     props.getCategories()
     props.getWindowWidth()
-  }, [])
+  })
 
   function renderRoutes(routes, contextPath) {
     const children = []
@@ -53,7 +53,6 @@ function Root(props) {
   const children = renderRoutes(routes, '/')
   return <BrowserRouter>{children}</BrowserRouter>
 }
-
 export default connect(
   null,
   { getTags, getCategories, getWindowWidth }

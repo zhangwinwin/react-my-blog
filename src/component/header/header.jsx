@@ -49,7 +49,7 @@ const BlogHeader = () => {
     <Header className="header-container">
       <Row>
         <Col {...responsiveLeft}>
-          <HeaderLeft navList={navList}></HeaderLeft>
+          <HeaderLeft navList={navList}/>
         </Col>
         <Col {...responsiveRight}>
           <Search/>
