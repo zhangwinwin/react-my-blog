@@ -3,7 +3,7 @@ import './layout.less'
 import ProTypes from 'prop-types'
 import { Layout, Row, Col, BackTop } from 'antd'
 import Header from '../header/header.jsx'
-// import Sider from '../sider/sider.jsx'
+import Sider from '../sider/sider.jsx'
 
 class AppLayout extends Component {
   static propTypes = {
@@ -30,7 +30,7 @@ class AppLayout extends Component {
         <Header/>
         <Row className="main-wrapper">
           <Col {...siderLayout}>
-            {/* <Sider></Sider> */}
+            <Sider></Sider>
           </Col>
           <Col {...contentLayout}>
             <div className="content-wrapper">
