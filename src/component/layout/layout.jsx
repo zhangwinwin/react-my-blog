@@ -26,19 +26,19 @@ class AppLayout extends Component {
     }
 
     return (
-      <Layout className="layout__container">
+      <Layout className="app-container">
         <Header/>
-        <Row className="layout__wrapper">
+        <Row className="main-wrapper">
           <Col {...siderLayout}>
             {/* <Sider></Sider> */}
           </Col>
           <Col {...contentLayout}>
-            <div className="layout__content">
+            <div className="content-wrapper">
               {this.props.children}
             </div>
           </Col>
         </Row>
-        <BackTop target={() => document.querySelector('.layout__content')}></BackTop>
+        <BackTop target={() => document.querySelector('.content-wrapper')}></BackTop>
       </Layout>
     )
   }
