@@ -37,7 +37,7 @@ function Home(props) {
       axios
         .get('/articles', {params: {page, pageSize: 10, title: keyword}})
         .then(res => {
-          const list = res.rows
+          const list = res.data.rows
           list.forEach(item => {
             let index = item.content.indexOf('<!--more-->')
             item.description = translateMarkdown(item.content.slice(0, index))
