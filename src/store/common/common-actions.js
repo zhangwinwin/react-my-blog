@@ -28,9 +28,11 @@ export const openDrawer = () => (
   }
 )
 
-export const closeDrawer = () => ({
-  type: types.COMMON_CLOSE_DRAWER
-})
+export const closeDrawer = () => (
+  {
+    type: types.COMMON_CLOSE_DRAWER
+  }
+)
 
 export const generateColorMap = commentList => ({
   type: types.COMMON_COLOR_MAP,
