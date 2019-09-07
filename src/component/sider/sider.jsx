@@ -11,8 +11,8 @@ function random(colorList) {
 }
 
 const mapStateToProps = state => ({
-  tagList: state.article.tagList,
-  colorList: state.common.colorList
+  tagList: state.articleReducer.tagList,
+  colorList: state.commonReducer.colorList
 })
 
 @connect(mapStateToProps)
@@ -43,8 +43,8 @@ class BlogSider extends Component {
         fetchTop: true
       }
     }
-    const result = await this.axios.get('/articles', queryParams)
-    return result.rows
+    const result = await this.$axios.get('/articles', queryParams)
+    return result.data.rows
   }
   
   render () {
