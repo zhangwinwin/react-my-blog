@@ -17,6 +17,7 @@ function getAnchorList (str) {
       arr.push(item)
     }
   }
+  console.log('str', str)
   str.replace(pattern, ($0, $1) => {
     const title = $0.replace(/.*?>/, '')
     let startIndex = $0.indexOf('"')
@@ -34,8 +35,9 @@ function getAnchorList (str) {
   return list
 }
 
-const Navigation = ({ content }) => {
-  const list = getAnchorList(content)
+const Navigation = (data) => {
+  console.log('dataNa', data)
+  const list = getAnchorList(data.content)
   function renderLink({ href, title, children }) {
     return (
       <Link key={href} href={href} title={title}>

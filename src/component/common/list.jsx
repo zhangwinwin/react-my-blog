@@ -75,11 +75,11 @@ const CommentItem = (
 }
 
 @connect(state => ({
-  username: state.user.username,
-  userId: state.user.userId,
-  email: state.user.email,
-  auth: state.user.auth,
-  colorMap: state.common.colorMap
+  username: state.userReducer.username,
+  userId: state.userReducer.userId,
+  email: state.userReducer.email,
+  auth: state.userReducer.auth,
+  colorMap: state.commonReducer.colorMap
 }))
 class CommentList extends Component {
   static propTypes = {

@@ -6,8 +6,8 @@ import { Button, Dropdown, Avatar, Menu } from 'antd'
 
 
 const mapStateToProps = state => ({
-  username: state.user.username,
-  avatarColor: state.user.avatarColor
+  username: state.userReducer.username,
+  avatarColor: state.userReducer.avatarColor
 })
 const updateUser = (prop) => {
   prop.openAuthModal('updateUser')
@@ -51,11 +51,15 @@ class UserInfo extends Component {
               type="primary"
               size="small"
               style={{marginRight: 20}}
-              onClick={() => this.props.openAuthModal('register')}>
-                注册
+              onClick={() => this.props.openAuthModal('login')}>
+                登录
               </Button>
+            <Button ghost type="danger" size="small" onClick={() => this.props.openAuthModal('register')}>
+              注册
+            </Button>
           </Fragment>
         )}
+        {/* <AuthModal/> */}
       </div>
     )
   }

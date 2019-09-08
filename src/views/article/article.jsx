@@ -66,7 +66,7 @@ function ArticleDetail (props) {
           <div className="article-detail" dangerouslySetInnerHTML={{__html: content}}></div>
           {props.windowWidth > 1300 ? (
             <div className="right-navigation">
-              <Navigation contnet={content}/>
+              <Navigation content={content}/>
             </div>
           ) : (
             <Fragment>

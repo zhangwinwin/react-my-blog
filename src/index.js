@@ -8,6 +8,10 @@ import axios from '../src/lib/axios'
 import store from '@/store/store.js'
 import * as serviceWorker from './serviceWorker';
 
+// 样式重置
+import '@/style/reset.less'
+import '@/assets/iconfont/iconfont.css'
+
 // 绑定全局方法axios
 React.Component.prototype.$axios = axios
 

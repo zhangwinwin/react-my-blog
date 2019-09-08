@@ -3,7 +3,7 @@ import { Layout, Row, Col } from 'antd'
 import HeaderLeft from './headerLeft'
 import Search from './search'
 import Nav from './nav'
-// import UserInfo from './userInfo'
+import UserInfo from './userInfo'
 
 const Header = Layout.Header
 
@@ -53,7 +53,7 @@ const BlogHeader = () => {
         </Col>
         <Col {...responsiveRight}>
           <Search/>
-          {/* <UserInfo /> */}
+          <UserInfo />
           <Nav navList={navList} />
         </Col>
       </Row>

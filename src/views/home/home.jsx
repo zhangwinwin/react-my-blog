@@ -75,7 +75,7 @@ function Home(props) {
 
   const { page, keyword } = decodeQuery(props.location.search)
   return (
-    <div className='content-innet-wrapper home'>
+    <div className='content-inner-wrapper home'>
       {loading ? (
         <Loading></Loading>
       ) : (

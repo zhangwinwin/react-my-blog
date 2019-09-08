@@ -54,6 +54,6 @@ function Root(props) {
   return <BrowserRouter>{children}</BrowserRouter>
 }
 export default connect(
-  null,
+  state => state.userReducer,
   { getTags, getCategories, getWindowWidth }
 )(Root)

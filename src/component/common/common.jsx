@@ -125,6 +125,6 @@ ArticleComment.propTypes = {
 }
 
 export default connect(
-  state => (state.user),
+  state => state.userReducer,
   { openAuthModal, logout }
 )(ArticleComment)
