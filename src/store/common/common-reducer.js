@@ -11,13 +11,14 @@ const defaultState = {
 }
 
 export const commonReducer = (state = defaultState, action) => {
-  const { type, playload } = action
+  const { type, payload } = action
+  console.log('action', action)
   switch (type) {
     case types.AUTH_OPEN_AUTHMODAL:
       return {
         ...state,
         authModalVisible: true,
-        authModalType: playload
+        authModalType: payload
       }
     case types.AUTH_CLOSE_AUTHMODEL:
       return {
@@ -28,7 +29,7 @@ export const commonReducer = (state = defaultState, action) => {
     case types.COMMON_GET_WINDOW_WIDTH:
       return {
         ...state,
-        windowWidth: playload
+        windowWidth: payload
       }
     case types.COMMON_OPEN_DRAWER:
       return {
@@ -41,12 +42,13 @@ export const commonReducer = (state = defaultState, action) => {
         drawerVisible: false
       }
     case types.COMMON_COLOR_MAP:
-      const list = groupBy(playload, item => item.userId)
+      const list = groupBy(payload, item => item.userId)
+      console.log('list', list)
       const colorList = state.colorList
       let colorMap = {}
-      list.forEact(item => {
+      list.forEach(item => {
         colorMap[item[0].userId] = colorList[random(colorList)]
-        item[0]['replies'].forEact(d => {
+        item[0]['replies'].forEach(d => {
           if (!colorMap[d.userId]) {
             colorMap[d.userId] = colorList[random(colorList)]
           }

@@ -50,6 +50,7 @@ export const random = arr => Math.floor(Math.random() * arr.length)
  */
 export const groupBy = (arr, f) => {
   const groups = {}
+  console.log('arr', arr)
   arr.forEach(item => {
     const group = JSON.stringify(f(item))
     groups[group] = groups[group] || []
