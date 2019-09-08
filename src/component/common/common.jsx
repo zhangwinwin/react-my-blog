@@ -9,6 +9,7 @@ import { logout } from '@/store/user/user-action'
 
 import { Comment, Avatar, Form, Button, Divider, Input, Icon, Dropdown, message, Menu } from 'antd'
 import CommentList from './list'
+import './common.less'
 
 const { TextArea } = Input
 const Editor = ({ onChange, onSubmit, submitting, value, articleId }) => (
@@ -79,7 +80,7 @@ function ArticleComment(props) {
   const { username, articleId, userId, commentList } = props
 
   return (
-    <div className="commen-wrapper">
+    <div className="comment-wrapper">
       <div className="comment-header">
         <span className='count'>{getCommentsCount(commentList)}</span>{articleId !== -1 ? '条评论' : '条留言'}
         <span className="menu-wrap">

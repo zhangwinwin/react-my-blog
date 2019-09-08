@@ -30,7 +30,7 @@ class Tags extends Component {
         )}
         {list.map((item, i) => (
           <Tag color={type === 'tags' ? colorList[i] : '#2DB7F5'} key={item.name}>
-            <Link to={`/${type}/${item.name}`}></Link>
+            <Link to={`/${type}/${item.name}`}>{item.name}</Link>
           </Tag>
         ))}
       </Fragment>
