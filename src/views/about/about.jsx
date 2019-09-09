@@ -14,7 +14,7 @@ function About(props) {
 
   useEffect(() => {
     const fetchList = () => {
-      axios.get('/comment/getAboutComments').then(res => {
+      axios.get('/comments').then(res => {
         props.generateColorMap(res.rows) // 生成头像的颜色匹配
         setCommentList(res.rows)
       })

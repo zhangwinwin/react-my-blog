@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { Timeline, Spin } from 'antd'
-import BlogPagination from '@/component/BlogPagination'
+import BlogPagination from '@/component/blogPagination.jsx'
 import './list.less'
 
 const TimeLineList = ({ list, name, type }) => {
@@ -62,7 +62,7 @@ class List extends Component {
 
   fetchList = ({ page = 1, name, type }) => {
     this.setState({ loading: true })
-    this.$axios.get(`/${type}/getArticles`, {
+    this.$axios.get(`/${type}/article`, {
       params: {
         page,
         pageSize: 15,
