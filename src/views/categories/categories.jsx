@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 @connect(state => ({
   categoriList: state.articleReducer.categoryList,
-  colorList: state.common.colorList
+  colorList: state.commonReducer.colorList
 }))
 class Categories extends Component {
   render () {
