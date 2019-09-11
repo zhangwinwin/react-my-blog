@@ -20,7 +20,7 @@ export const commonReducer = (state = defaultState, action) => {
         authModalVisible: true,
         authModalType: payload
       }
-    case types.AUTH_CLOSE_AUTHMODEL:
+    case types.AUTH_CLOSE_AUTHMODAL:
       return {
         ...state,
         authModalVisible: false,

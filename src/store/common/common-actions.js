@@ -2,14 +2,14 @@ import * as types from '../action-types'
 
 export const openAuthModal = payload => {
   return {
-    types: types.AUTH_OPEN_AUTHMODAL,
+    type: types.AUTH_OPEN_AUTHMODAL,
     payload
   }
 }
 
 export const closeAuthModal = playload => {
   return {
-    type: types.COMMON_CLOSE_DRAWER,
+    type: types.AUTH_CLOSE_AUTHMODAL,
     playload
   }
 }
