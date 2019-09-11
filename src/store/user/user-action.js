@@ -3,7 +3,7 @@ import axios from '@/lib/axios'
 import { message } from 'antd'
 
 export function login (params) {
-  return dispatch => {
+  return dispatch => 
     axios.post('/login', params).then(res => {
       if (res.code === 200) {
         localStorage.setItem('token', res.token)
@@ -15,11 +15,10 @@ export function login (params) {
       }
       return res
     })
-  }
 }
 
 export function register (params) {
-  return dispatch => {
+  return dispatch => 
     axios.post('/register', params).then(res => {
       if (res.code === 200) {
         message.success(res.message)
@@ -28,11 +27,10 @@ export function register (params) {
       }
       return res
     })
-  }
 }
 
 export function updateUser (params) {
-  return dispatch => {
+  return dispatch => 
     axios.put(`/users/${params.userId}`, params).then(res => {
       if (res.code === 200) {
         message.success(res.message)
@@ -48,7 +46,6 @@ export function updateUser (params) {
       }
       return res
     })
-  }
 }
 
 export function logout () {

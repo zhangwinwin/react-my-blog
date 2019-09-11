@@ -140,13 +140,16 @@ function AuthModal(props) {
   }
 
   function handleSubmit(e) {
+    console.log('handleSubmit')
     e.preventDefault()
     props.form.validateFieldsAndScroll((errors, values) => {
       if (errors) return
       const { authModalType, userInfo } = props
       if (authModalType === 'updateUser') values.userId = userInfo.userId
-
+      console.log('authModaltype', authModalType)
+      console.log('values', values)
       props[authModalType](values).then(res => {
+        console.log('code', res.code)
         if (res.code === 200) props.closeAuthModal()
       })
     })
