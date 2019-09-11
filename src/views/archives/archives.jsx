@@ -18,10 +18,10 @@ function Archives (props) {
   
   function fetchList(page = 1) {
     setLoading(true)
-    axios.get('/article/getList', { params: {page, pageSzie: 15}}).then(res => {
-      const list = groupBy(res.data.row, item => item.createdAt.slice(0, 4))
+    axios.get('/articles', { params: {page, pageSzie: 15}}).then(res => {
+      const list = groupBy(res.data.rows, item => item.createdAt.slice(0, 4))
       setList(list)
-      setTotal(res.count)
+      setTotal(res.data.count)
       setLoading(false)
     }).catch(err => setLoading(false))
   }

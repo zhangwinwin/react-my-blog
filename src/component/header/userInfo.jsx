@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { register, logout } from '@/store/user/user-action.js'
 import { openAuthModal } from '@/store/common/common-actions.js'
+import AuthModal from '@/component/authModal/authModal.jsx'
 import { Button, Dropdown, Avatar, Menu } from 'antd'
 
 
@@ -9,9 +10,6 @@ const mapStateToProps = state => ({
   username: state.userReducer.username,
   avatarColor: state.userReducer.avatarColor
 })
-const updateUser = (prop) => {
-  prop.openAuthModal('updateUser')
-}
 
 @connect(
   mapStateToProps,
@@ -22,7 +20,7 @@ class UserInfo extends Component {
     return (
       <Menu>
         <Menu.Item>
-          <span className="user-logout" onClick={updateUser(this.props)}>
+          <span className="user-logout" onClick={() => this.props.openAuthModal('updateUser')}>
             修改账户信息
           </span>
         </Menu.Item>
@@ -36,6 +34,7 @@ class UserInfo extends Component {
   }
   render () {
     const { username, avatarColor } = this.props
+    console.log('props', this.props)
     return (
       <div id="header-userInfo">
         {username ? (
@@ -59,7 +58,7 @@ class UserInfo extends Component {
             </Button>
           </Fragment>
         )}
-        {/* <AuthModal/> */}
+        <AuthModal/>
       </div>
     )
   }
