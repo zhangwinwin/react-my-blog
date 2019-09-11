@@ -15,12 +15,13 @@ function About(props) {
   useEffect(() => {
     const fetchList = () => {
       axios.get('/comments').then(res => {
-        props.generateColorMap(res.rows) // 生成头像的颜色匹配
-        setCommentList(res.rows)
+        props.generateColorMap(res.data.rows) // 生成头像的颜色匹配
+        setCommentList(res.data.rows)
       })
     }
     fetchList()
   }, [])
+  
 
   return (
     <div className="content-inner-wrapper about">
@@ -56,23 +57,23 @@ function About(props) {
           <ul>
             <li>
               HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
-              <Rate defaultValue={3} disabled />
+              <Rate defaultValue={4} disabled />
             </li>
             <li>
               react vue 框架：熟练掌握使用！
-              <Rate defaultValue={3} disabled />
+              <Rate defaultValue={4} disabled />
             </li>
             <li>
               es6：日常开发必备，以及掌握基本面向对象编程实现！
-              <Rate defaultValue={3} disabled />
+              <Rate defaultValue={4} disabled />
             </li>
             <li>
               webpack: 入门级别，可以对脚手架进行针对性的配置！
-              <Rate defaultValue={2} disabled />
+              <Rate defaultValue={3} disabled />
             </li>
             <li>
               node mysql：针对需求可以做到简单的数据库设计、接口的开发与设计！
-              <Rate defaultValue={2} disabled />
+              <Rate defaultValue={3} disabled />
             </li>
           </ul>
         </li>
