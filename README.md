@@ -1,68 +1,88 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-my-blog
 
-## Available Scripts
+<p align='center'>
+  <a href='https://github.com/facebook/react'>
+    <img src="https://img.shields.io/badge/react-16.8.6-brightgreen.svg" alt="react">
+  </a>
+  <a href='https://github.com/ant-design/ant-design'>
+    <img src="https://img.shields.io/badge/ant-design-3.22.2-brightgreen.svg" alt="ant-design">
+  </a>
+  <a href='https://github.com/axios/axios'>
+    <img src="https://img.shields.io/badge/axios-0.19.0-brightgreen.svg" alt="axios">
+  </a>
+  <a href='https://github.com/koajs/koa'>
+    <img src="https://img.shields.io/badge/koa-2.7.0-brightgreen.svg" alt="koa">
+  </a>
+  <a href='https://github.com/sequelize/sequelize'>
+    <img src="https://img.shields.io/badge/sequelize-5.12.3-brightgreen.svg" alt="sequelize">
+  </a>
+</p>
 
-In the project directory, you can run:
+简体中文
 
-### `npm start`
+## 简介
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[react-my-blog](https://github.com/zhangwinwin/react-my-blog)是一个基于react、ant-design的优秀前端框架和koa、sequelize优秀后端框架构建成的博客单页面应用。
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+**目前版本基于create-react-app进行构建**
 
-### `npm test`
+## 前序准备
+你需要在本地安装 [node](http://nodejs.org/) 和 [git](https://git-scm.com/)。本项目技术栈前端基于 [ES2015+](http://es6.ruanyifeng.com/)、[react](https://github.com/facebook/react)、[ant-design](https://github.com/ant-design/ant-design)、[axios](https://github.com/axios/axios)、[react-reduex]()和[react-router]()，后端基于[koa](https://github.com/koajs/koa)、[sequelize](https://github.com/sequelize/sequelize)和[nodemon]()。提前了解和学习这些知识会对使用本项目有很大的帮助。
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 功能
+```
+- 登录 / 注销 / 注册
+- 错误页面
+  - 404
+- 文章
+  - 文章创建
+  - 文章修改
+- 回复
+  - 回复创建
+- 文章类型
+  - 类型创建
+  - 类型修改
+```
 
-### `npm run build`
+## 开发
+```
+# 克隆项目
+git clone https://github.com/zhangwinwin/react-my-blog
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# 进入项目目录
+cd react-my-blog
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+# 安装客户端依赖
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# 安装服务端依赖
+cd server
+npm install
 
-### `npm run eject`
+# npm 下载速度慢的问题
+npm install --registry=https://registry.npm.taobao.org
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# 启动服务端服务
+cd server
+npm start
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# 启动客户端服务
+cd react-my-blog
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+浏览器访问 http://localhost:8080
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 发布
+```
+# 构建生产环境
+npm run build
+```
 
-## Learn More
+## Browsers support
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Modern browsers and Internet Explorer 10+.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](https://godban.github.io/browsers-support-badges/)</br>Safari |
+| --------- | --------- | --------- | --------- |
+| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions
