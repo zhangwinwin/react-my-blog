@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/badge/react-16.8.6-brightgreen.svg" alt="react">
   </a>
   <a href='https://github.com/ant-design/ant-design'>
-    <img src="https://img.shields.io/badge/ant-design-3.22.2-brightgreen.svg" alt="ant-design">
+    <img src="https://img.shields.io/badge/antd-3.22.2-brightgreen.svg" alt="ant-design">
   </a>
   <a href='https://github.com/axios/axios'>
     <img src="https://img.shields.io/badge/axios-0.19.0-brightgreen.svg" alt="axios">
@@ -55,23 +55,23 @@ cd react-my-blog
 # 安装客户端依赖
 npm install
 
-# 安装服务端依赖
-cd server
-npm install
-
 # npm 下载速度慢的问题
 npm install --registry=https://registry.npm.taobao.org
 
-# 启动服务端服务
-cd server
+# 启动客户端服务
 npm start
 
-# 启动客户端服务
-cd react-my-blog
+# 进入服务端目录
+cd server
+
+# 安装服务端依赖
+npm install
+
+# 启动服务端服务
 npm start
 ```
 
-浏览器访问 http://localhost:8080
+浏览器访问 http://localhost:3000
 
 ## 发布
 ```
