@@ -56,11 +56,15 @@ class BlogSider extends Component {
       <div className="sider-wrapper">
         <img src={avatar} className="sider-avatar" alt=""/>
         <h2 className="name">Mr.zhang</h2>
-        <div className="title">开发工程师</div>
+        <div className="title">前端开发工程师</div>
         <ul className="link-list">
           <li>
             <Icon type='github' />
             <a href="https://github.com/zhangwinwin" target="_blank" rel="noreferrer noopener">github</a>
+          </li>
+          <li>
+            <Icon type='tag' />
+            <a href="https://juejin.im/user/5c6b66e9e51d4539a642640c" target="_blank" rel="noreferrer noopener">掘金</a>
           </li>
         </ul>
         <Divider orientation="left">{title}</Divider>
