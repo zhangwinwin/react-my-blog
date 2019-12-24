@@ -82,7 +82,7 @@ class List extends Component {
 
   render () {
     const { list, type, page, total, loading } = this.state
-    const { name } = this.props.match.name
+    const { name } = this.props.match.params.name
     return (
       <div className="content-inner-wrapper list-page">
         <Spin tip="loading..." spinning={loading}>
