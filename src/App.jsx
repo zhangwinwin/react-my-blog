@@ -6,7 +6,6 @@ import { getTags, getCategories } from './store/article/article-actions'
 import { getWindowWidth } from './store/common/common-actions'
 
 function Root(props) {
-  // 初始化数据 类似 componentDidMount
   useEffect(() => {
     props.getTags()
     props.getCategories()
