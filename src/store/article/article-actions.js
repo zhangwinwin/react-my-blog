@@ -20,3 +20,13 @@ export const getCategories = () => {
       })
     })
 }
+
+export const createArticle = (data) => {
+  return dispatch => 
+    axios.post('/articles/create', data).then(res => {
+      dispatch({
+        type: types.ARTICLE_CREATE,
+        payload: res.data
+      })
+    })
+}

@@ -3,7 +3,8 @@ import * as types from '../action-types'
 const defaultState = {
   categoryList: [],
   tagList: [],
-  recentList: []
+  recentList: [],
+  response: ''
 }
 
 export const articleReducer = (state = defaultState, action) => {
@@ -13,6 +14,8 @@ export const articleReducer = (state = defaultState, action) => {
       return { ...state, categoryList: payload }
     case types.TAG_GETLIST:
       return { ...state, tagList: payload }
+    case types.ARTICLE_CREATE:
+        return { ...state, response: payload }
     default:
       return state
   }
