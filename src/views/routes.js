@@ -7,6 +7,7 @@ import List from './list/list.jsx'
 import About from './about/about.jsx'
 import NotFound from './notFound/notFound.jsx'
 import Archives from './archives/archives.jsx'
+import Write from './markdown/markdown.jsx'
 // const Article = asyncComponent(() => import('./article/article.jsx'))
 
 export default {
@@ -21,6 +22,7 @@ export default {
     { path: 'tags/:name', component: List },
     { path: 'about', component: About },
     { path: 'archives', component: Archives },
+    { path: 'write', component: Write },
     { path: '*', component: NotFound }
   ]
 }
