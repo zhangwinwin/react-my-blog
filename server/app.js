@@ -7,7 +7,19 @@ import router from './router'
 
 const app = new Koa()
 
-app.use(cors())
+app.use(cors({
+  origin: function(ctx) {
+    if (ctx.url === '/test') {
+      return false;
+    }
+    return 'http://localhost:3000';
+  },
+  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+  maxAge: 5,
+  credentials: true,
+  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}))
 .use(bodyparser())
 .use(logger())
 app.use(router.routes(), router.allowedMethods())
