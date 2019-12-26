@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import './index.css';
 import App from './App.jsx';
 import { Provider } from 'react-redux'
 import axios from '../src/lib/axios'
@@ -11,6 +10,7 @@ import * as serviceWorker from './serviceWorker';
 // 样式重置
 import '@/style/reset.less'
 import '@/assets/iconfont/iconfont.css'
+import './style/index.less'
 
 // 绑定全局方法axios
 React.Component.prototype.$axios = axios
