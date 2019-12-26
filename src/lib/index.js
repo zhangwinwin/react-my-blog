@@ -1,5 +1,5 @@
 import marked from 'marked'
-// import hljs from 'highlight.js'
+import hljs from 'highlight.js'
 import xss from 'xss'
 
 // 转化 md 语法为 html
@@ -12,10 +12,11 @@ export const translateMarkdown = (plainText, isGuardXss = false) => {
     tables: true,
     breaks: true,
     smartLists: true,
-    smartypants: true
-    // highlight: function(code) {
-    //   return hljs.highlightAuto(code).value
-    // }
+    smartypants: true,
+    highlight: function(code) {
+      /*eslint no-undef: "off"*/
+      return hljs.highlightAuto(code).value
+    }
   })
 }
 
