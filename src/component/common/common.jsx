@@ -15,7 +15,7 @@ const { TextArea } = Input
 const Editor = ({ onChange, onSubmit, submitting, value, articleId }) => (
   <div>
     <Form.Item>
-      <TextArea rows={4} placeholder="说点什么" onChange={onchange} value={value} />
+      <TextArea rows={4} placeholder="说点什么" onChange={onChange} />
     </Form.Item>
     <Form.Item>
       <div className="controls">
@@ -33,7 +33,7 @@ function ArticleComment(props) {
 
   const handleSubmit = () => {
     if (!value) return
-    if (!props.usename) return message.warn('您未登录，请登录后再试')
+    if (!props.username) return message.warn('您未登录，请登录后再试')
     setSubmitting(true)
 
     axios.post('/comments', { articleId: props.articleId, content: value }).then(res => {
@@ -60,6 +60,10 @@ function ArticleComment(props) {
       default:
         break
     }
+  }
+
+  const handleValue = (e) => {
+    setValue(e.target.value)
   }
 
   const renderDropdownMenu = () => {
@@ -107,7 +111,7 @@ function ArticleComment(props) {
       }
       content={
         <Editor
-          onChange={e => setValue(e.targer.value)}
+          onChange={handleValue}
           onSubmit={handleSubmit}
           submitting={submitting}
           value={value}

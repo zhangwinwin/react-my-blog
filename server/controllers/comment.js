@@ -68,7 +68,7 @@ function fetchArticleDetail (articleId) {
 export async function createComment (ctx) {
   const { userId } = decodeToken(ctx)
   const { articleId, content } = ctx.request.body
-  const validator = Joi.validate({ userId, articleId, content }, commentSchema.createComcment)
+  const validator = Joi.validate({ userId, articleId, content }, commentSchema.createComment)
   if (validator.error) {
     ctx.body = {
       code: 400,
