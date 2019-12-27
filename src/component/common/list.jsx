@@ -41,13 +41,13 @@ const CommentItem = (
             title={'是否删除该评论？'}
             cancelText='取消'
             okText="确认"
-            onConfirm={() => delComment(item.fatherId)}>
+            onConfirm={() => delComment(item, item.fatherId)}>
             <Icon type="delete" className="icon-delete"></Icon>
           </Popconfirm>
         )}
       </Fragment>
     ]}
-    author={<span>{item.user && item.user.usernane}</span>}
+    author={<span>{item.user && item.user.username}</span>}
     avatar={renderAvatar(item)}
     content={<div className="article-detail" dangerouslySetInnerHTML={{__html: content}}></div>}
     datetime={
@@ -131,13 +131,13 @@ class CommentList extends Component {
     const content = this.state.value.trim()
     if (!this.props.username) return message.warn('您未登录，请登录后再试')
     const { articleId } = this.props
-    this.$axios.post('/commonts/reply', {
+    this.$axios.post('/comments/reply', {
       content,
       articleId,
       commentId: this.state.commentId
     })
     .then(res => {
-      this.props.setCommentList(res.data.rows)
+      this.props.setCommentList(res.data.result.rows)
       this.setState({ commentId: 0, levelOneId: 0, levelTwoId: 0, value: ''})
     })
   }
@@ -151,7 +151,7 @@ class CommentList extends Component {
         message.success(res.message)
       })
     } else {
-      this.$axios.delete('commonts', { params: { replyId: item.id } }).then(res => {
+      this.$axios.delete('comments', { params: { replyId: item.id } }).then(res => {
         if (res.code !== 200) return message.error(res.message)
 
         const list = [...this.props.commentList]
