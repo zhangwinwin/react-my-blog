@@ -23,7 +23,6 @@ function ArticleDetail (props) {
     const fetchData = id => {
       setLoading(true)
       axios.get(`/articles/${id}`).then(res => {
-        console.log('content', res.data.content)
         const content = translateMarkdown(res.data.content)
         const { title, tags, categories, comments} = res.data
         props.generateColorMap(comments)
