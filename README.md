@@ -1,4 +1,6 @@
-# react-my-blog
+## react-my-blog
+* 前后端分离式开发   
+* 博客样式几乎借助于 antd 这个优秀的 UI 框架，主打简约风格  
 
 <p align='center'>
   <a href='https://github.com/facebook/react'>
@@ -20,31 +22,77 @@
 
 简体中文
 
-## 简介
+### 简介
 
 [react-my-blog](https://github.com/zhangwinwin/react-my-blog)是一个基于react、ant-design的优秀前端框架和koa、sequelize优秀后端框架构建成的博客单页面应用。
 
 **目前版本基于create-react-app进行构建**
 
-## 前序准备
+### 前序准备
 你需要在本地安装 [node](http://nodejs.org/) 和 [git](https://git-scm.com/)。本项目技术栈前端基于 [ES2015+](http://es6.ruanyifeng.com/)、[react](https://github.com/facebook/react)、[ant-design](https://github.com/ant-design/ant-design)、[axios](https://github.com/axios/axios)、[react-reduex]()和[react-router]()，后端基于[koa](https://github.com/koajs/koa)、[sequelize](https://github.com/sequelize/sequelize)和[nodemon]()。提前了解和学习这些知识会对使用本项目有很大的帮助。
 
-## 功能
+### 实现功能
+
+- [x] 前台：主页 + 列表页 + 搜索页 + 分类页 + 标签页
+- [x] 发表文章
+- [x] 响应式、文章锚点导航、回到顶部、`markdown` 代码高亮
+- [x] 用户可以评论与回复
+
+### 部分难点
+**server**  
+1、跨域
 ```
-- 登录 / 注销 / 注册
-- 错误页面
-  - 404
-- 文章
-  - 文章创建
-  - 文章修改
-- 回复
-  - 回复创建
-- 文章类型
-  - 类型创建
-  - 类型修改
+var koa = require('koa');
+var app = new koa();
+app.use(cors({
+    origin: function (ctx) {
+        return 'http://localhost:3000'; / 这样就能只允许 http://localhost:3000 这个域名的请求了
+    },
+    exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+    maxAge: 5,
+    credentials: true,
+    allowMethods: ['GET', 'POST', 'DELETE'],
+    allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}))
 ```
 
-## 开发
+2、使用import/export  
+```
+// 创建一个start.js
+require('@babel/register')(
+  {
+    plugins: ['@babel/plugin-transform-modules-commonjs']
+  }
+)
+module.exports = require('./app.js')
+```
+
+**client**  
+1、使用markdown语法编写文章  
+```
+// 使用react-mde
+import ReactMde from "react-mde";
+import * as Showdown from "showdown";
+
+const converter = new Showdown.Converter({
+  tables: true,
+  simplifiedAutoLink: true,
+  strikethrough: true,
+  tasklists: true
+});
+
+<ReactMde
+  value={value}
+  onChange={setValue}
+  selectedTab={selectedTab}
+  onTabChange={setSelectedTab}
+  generateMarkdownPreview={markdown =>
+    Promise.resolve(converter.makeHtml(markdown))
+  }
+/>
+```
+
+### 开发
 ```
 # 克隆项目
 git clone https://github.com/zhangwinwin/react-my-blog
@@ -73,13 +121,13 @@ npm start
 
 浏览器访问 http://localhost:3000
 
-## 发布
+### 发布
 ```
 # 构建生产环境
 npm run build
 ```
 
-## Browsers support
+### Browsers support
 
 Modern browsers and Internet Explorer 10+.
 
