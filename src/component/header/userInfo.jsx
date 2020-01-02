@@ -9,6 +9,7 @@ import { Button, Dropdown, Avatar, Menu } from 'antd'
 
 const mapStateToProps = state => ({
   username: state.userReducer.username,
+  auth: state.userReducer.auth,
   avatarColor: state.userReducer.avatarColor
 })
 
@@ -30,11 +31,13 @@ class UserInfo extends Component {
             退出登录
           </span>
         </Menu.Item>
-        <Menu.Item>
-          <Link to={`/write`}>
-            写文章
-          </Link>
-        </Menu.Item>
+        {this.props.auth === 1  ? (
+          <Menu.Item>
+            <Link to={`/write`}>
+              写文章
+            </Link>
+          </Menu.Item>
+        ) : ''}
       </Menu>
     )
   }
