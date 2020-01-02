@@ -1,8 +1,9 @@
 import db from '../models'
-// import sequelize from 'sequelize'
+import Sequelize from 'sequelize'
 import Joi from 'joi'
 import Article from '../schemas/article'
 import { checkAuth } from '../lib/token'
+const Op = Sequelize.Op
 
 export async function createArticle (ctx) {
   const isAuth = checkAuth(ctx)
@@ -128,7 +129,7 @@ export async function getArticleList (ctx) {
   let order = [['createdAt', 'DESC']]
 
   if (title) {
-    queryParams.title = { $like: `%${title}` }
+    queryParams.title = { [Op.like]: `%${title}%` }
   }
 
   if (fetchTop) {
