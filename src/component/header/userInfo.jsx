@@ -62,9 +62,9 @@ class UserInfo extends Component {
               onClick={() => this.props.openAuthModal('login')}>
                 登录
               </Button>
-            <Button ghost type="danger" size="small" onClick={() => this.props.openAuthModal('register')}>
+            {/* <Button ghost type="danger" size="small" onClick={() => this.props.openAuthModal('register')}>
               注册
-            </Button>
+            </Button> */}
           </Fragment>
         )}
         <AuthModal/>
