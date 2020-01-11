@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Pagination } from 'antd'
 
 @connect(state => ({
-  windowWidth: state.common.windowWidth
+  windowWidth: state.commonReducer.windowWidth
 }))
 class BlogPagination extends Component {
   static propTypes = {
