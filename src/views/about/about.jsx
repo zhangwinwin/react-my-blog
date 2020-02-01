@@ -52,19 +52,23 @@ function About(props) {
           技能
           <ul>
             <li>
-              HTML、CSS、Javascript：能熟练开发符合 W3C 标准的页面！
+              熟练掌握JavaScript、CSS、HTML，可以脱离框架独立进行复杂项目的开发；
               <Rate defaultValue={4} disabled />
             </li>
             <li>
-              react vue 框架：掌握使用！
+              熟练掌握Vue、React等前端库或框架以及相关的全家桶，有基于全家桶构建通用前端框架的经验；
               <Rate defaultValue={4} disabled />
             </li>
             <li>
-              webpack: 能针对项目做优化
+              有typeScript与nodejs编写经验以及独立开发系统的经验；
               <Rate defaultValue={3} disabled />
             </li>
             <li>
-              nodeJs mysql：针对需求可以做到简单的数据库设计、接口的开发与设计！
+              有webpack优化构建的经验；熟悉git等代码管理工具；
+              <Rate defaultValue={3} disabled />
+            </li>
+            <li>
+              了解http、浏览器工作原理与性能优化；
               <Rate defaultValue={3} disabled />
             </li>
           </ul>
