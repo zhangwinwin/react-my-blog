@@ -6,6 +6,7 @@ import { Provider } from 'react-redux'
 import axios from '../src/lib/axios'
 import store from '@/store/store.js'
 import * as serviceWorker from './serviceWorker';
+import Footer from '@/component/footer/footer.jsx'
 
 // 样式重置
 import '@/style/reset.less'
@@ -25,6 +26,7 @@ const render = Component => {
     <AppContainer>
       <Provider store={store}>
         <Component/>
+        <Footer></Footer>
       </Provider>
     </AppContainer>,
     document.getElementById('root')
