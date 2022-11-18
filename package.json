@@ -56,7 +56,7 @@
     "postcss-safe-parser": "4.0.1",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.1",
-    "react-dev-utils": "^9.0.1",
+    "react-dev-utils": "^12.0.1",
     "react-dom": "^16.8.6",
     "react-hot-loader": "^4.12.12",
     "react-mde": "^8.0.1",
